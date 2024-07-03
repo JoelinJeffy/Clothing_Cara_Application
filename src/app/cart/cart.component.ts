@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 import { map, Observable, of, Subscription } from 'rxjs';
 
@@ -96,5 +98,19 @@ export class CartComponent {
   
     
   }
+  downloadCartAsPDF() {
+    const element = document.getElementById('cart-content');
+    if (element) {
+      html2canvas(element).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 210;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save('cart.pdf');
+      })
+    }
+  };
+    
   ngOnInit() {}
 }

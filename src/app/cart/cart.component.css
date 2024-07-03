@@ -109,6 +109,10 @@ td button:hover {
         width: 30%;
         padding: 10px;
         margin-bottom: 20px;
+        margin-right: 10px;
+}
+#subtotal button:hover{
+    cursor: pointer;
 }
 .no-fav-content {
     text-align: center;

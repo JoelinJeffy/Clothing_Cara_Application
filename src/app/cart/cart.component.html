@@ -67,6 +67,7 @@
 <app-navbar></app-navbar>
 
 <div *ngIf="product$ | async as products">
+    <div id="cart-content">
     <div class="cart" *ngIf="products.length > 0;else nocartitems">
         <table width="100%">
             <thead>
@@ -114,7 +115,9 @@
             </tr>
         </table>
         <button (click)="checkout()">Proceed to checkout</button>
+        <button (click)="downloadCartAsPDF()">Download as PDF</button>
     </div>
+</div>
 </div>
 
 <ng-template #nocartitems>

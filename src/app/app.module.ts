@@ -36,6 +36,7 @@ import { favouriteReducer } from './favourite/state/favourite.reducer';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
@@ -58,6 +59,7 @@ import { AboutComponent } from './about/about.component';
    
     CheckoutComponent,
                AboutComponent,
+               ContactUsComponent,
   
   ],
   imports: [

@@ -91,8 +91,12 @@
 
 .pro-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 20px;
+    
+        padding: 20px;
+        margin-left: 20px;
 }
 .button{
     

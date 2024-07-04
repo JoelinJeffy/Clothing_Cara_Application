@@ -25,6 +25,11 @@ export class SingleproductComponent {
     private store: Store<AppState>,
     private route: Router
   ) {
+    this.route.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     this.product$ = this.store.select(getProducts).pipe(
       map((products) => {
         if (!products) {
@@ -56,10 +61,6 @@ export class SingleproductComponent {
     this.router.params.subscribe((data) => (this.id = data['id']));
 
     this.store.dispatch(loadProducts());
-    this.route.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+    
   }
 }

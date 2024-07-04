@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { User } from '../Models/User';
 import { getSignedupUser } from '../signup/state/signup.selector';
 import { UserState } from '../signup/state/signup.state';
+import { AppState } from '../store/app.state';
+import { loadProducts } from './featuredproducts/state/products.action';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,9 @@ import { UserState } from '../signup/state/signup.state';
   styleUrl:  './home.component.css',
 })
 export class HomeComponent {
-  constructor(private router: ActivatedRoute) {}
+  constructor(private router: ActivatedRoute,private store:Store<AppState>) {}
   ngOnInit() {
+    this.store.dispatch(loadProducts());
     this.router.fragment.subscribe((shop) => this.JumpToSection(shop));
   }
   JumpToSection(shop: string | null) {

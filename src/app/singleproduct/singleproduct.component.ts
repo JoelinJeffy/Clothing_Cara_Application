@@ -33,15 +33,7 @@ export class SingleproductComponent {
     private route: Router,
     
   ) {
-    this.product$ = this.store.select(getProducts).pipe(
-      map((products) => {
-        if (!products) {
-          return undefined;
-        } else {
-          return products.find((product) => product.id === this.id);
-        }
-      })
-    );
+    
   }
   
   addToCart(product: featuredProducts, quantity: number) {
@@ -66,8 +58,17 @@ export class SingleproductComponent {
   
   ngOnInit() {
     this.router.params.subscribe((data) => (this.id = data['id']));
+    this.product$ = this.store.select(getProducts).pipe(
+      map((products) => {
+        if (!products) {
+          return undefined;
+        } else {
+          return products.find((product) => product.id === this.id);
+        }
+      })
+    );
 
-    this.store.dispatch(loadProducts());
+    // this.store.dispatch(loadProducts());
     this.route.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {

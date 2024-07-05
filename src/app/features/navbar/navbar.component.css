@@ -35,28 +35,36 @@
     border-bottom-right-radius: 10px;
 }
 
+#links {
+    display: flex;
+}
+
 #navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 20px;
     align-items: center;
-}
-
-#navbar li {
     list-style: none;
-    padding: 0 20px;
+    margin: 0;
+    padding: 0;
 }
 
-#navbar a {
+#navbar li a {
     text-decoration: none;
     font-size: 16px;
     font-weight: 600;
     color: #1a1a1a;
     transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+#navbar li a i {
+    margin-right: 8px;
 }
 
 #navbar li a:hover,
-#links li a.active,
-#links li a:active {
+#navbar li a.active {
     color: #088178;
 }
 
@@ -88,4 +96,13 @@
     border-radius: 5px;
     top: -5px;
     right: 12px;
+}
+
+.loginsignup {
+    display: flex;
+    gap: 15px;
+}
+
+#mobile {
+    display: flex;
 }

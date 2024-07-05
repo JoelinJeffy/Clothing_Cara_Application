@@ -19,6 +19,9 @@ export class NavbarComponent {
   searchInput!: string;
   cartItems!: featuredProducts[];
   favItems!: featuredProducts[];
+  isNavbarOpen: boolean = false;
+
+    
 
   constructor(private store: Store<AppState>, private router: Router) {}
   ngOnInit() {
@@ -31,6 +34,15 @@ export class NavbarComponent {
     this.store
       .select(getFavourites)
       .subscribe((data) => (this.favItems = data));
+  }
+  toggleNavbar() {
+    this.isNavbarOpen = !this.isNavbarOpen;
+    const navbar = document.getElementById('navbar');
+    if (this.isNavbarOpen) {
+      navbar?.classList.add('active');
+    } else {
+      navbar?.classList.remove('active');
+    }
   }
   onlogout() {
     this.store.dispatch(logoutAction());

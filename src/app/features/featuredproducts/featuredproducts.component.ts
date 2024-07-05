@@ -12,6 +12,7 @@ import {
   getFilteredProducts,
   getProducts,
 } from '../../store/featured-products/products.selector';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-featuredproducts',
@@ -25,7 +26,7 @@ export class FeaturedproductsComponent {
 
   constructor(
     private store: Store<AppState>,
-
+     private snackBar: MatSnackBar,
     private route: Router
   ) {
     this.products$ = this.store
@@ -34,7 +35,7 @@ export class FeaturedproductsComponent {
   }
 
   ngOnInit() {
- 
+    this.store.dispatch(loadProducts());
     this.store.select(getIsLoggedIn).subscribe((data) => (this.login = data));
   }
   generateStars(rating: number): number[] {
@@ -42,20 +43,30 @@ export class FeaturedproductsComponent {
   }
   toggleFav(product: featuredProducts) {
     if (this.login) {
-      alert('Product added to wishlist');
+    this.snackBar.open('Product added to wishlist', 'Close', {
+        duration: 3000,
+      })
       this.store.dispatch(favouriteAction({ product }));
     } else {
-      alert('Login to continue');
-      this.route.navigate(['/login']);
+     this.snackBar.open('Login to continue', 'Close', {
+        duration: 3000,
+      }).afterDismissed().subscribe(() => {
+        this.route.navigate(['/login']);
+      });
     }
   }
   addToCart(product: featuredProducts, quantity: number) {
     if (this.login) {
-      alert('Product added to cart successfully');
+     this.snackBar.open('Product added to cart succesfully', 'Close', {
+        duration: 3000,
+      })
       this.store.dispatch(cartAction({ product, quantity }));
     } else {
-      alert('Login To Continue');
-      this.route.navigate(['/login']);
+       this.snackBar.open('Login to continue', 'Close', {
+        duration: 3000,
+      }).afterDismissed().subscribe(() => {
+        this.route.navigate(['/login']);
+      });
     }
   }
 }

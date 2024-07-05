@@ -9,6 +9,7 @@ import { loadProducts } from '../../store/featured-products/products.action';
 import { cartAction } from '../../store/cart/cart.actions';
 import { getIsLoggedIn } from '../../store/login/login.selector';
 import { AppState } from '../../app.state';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-singleproduct',
@@ -23,7 +24,8 @@ export class SingleproductComponent {
   constructor(
     private router: ActivatedRoute,
     private store: Store<AppState>,
-    private route: Router
+    private route: Router,
+    private snackBar: MatSnackBar
   ) {
     this.route.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -49,11 +51,19 @@ export class SingleproductComponent {
     if (this.loggedIn) {
       console.log(this.loggedIn);
       this.store.dispatch(cartAction({ product, quantity }));
-      alert('Product added to cart successfully');
-      this.route.navigate(['/cart']);
+      this.snackBar.open('Product added to cart succesfully', 'Close', {
+        duration: 3000,
+      }).afterDismissed().subscribe(() => {
+        this.route.navigate(['/cart']);
+      });
+    
     } else {
-      alert('Login to continue');
-      this.route.navigate(['/login']);
+       this.snackBar.open('Login to continue', 'Close', {
+        duration: 3000,
+      }).afterDismissed().subscribe(() => {
+        this.route.navigate(['/login']);
+      });
+    
     }
   }
 
@@ -61,6 +71,5 @@ export class SingleproductComponent {
     this.router.params.subscribe((data) => (this.id = data['id']));
 
     this.store.dispatch(loadProducts());
-    
   }
 }

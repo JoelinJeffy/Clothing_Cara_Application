@@ -5,40 +5,58 @@
             (input)="onSearch(searchInput)" />
         <i class="fas fa-search" (click)="onSearch(searchInput)"></i>
     </div>
-
     <div id="links">
         <ul id="navbar">
             <li>
                 <a href="" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                    fragment="home">Home</a>
+                    fragment="home">
+                    Home
+                </a>
             </li>
-            <li><a href="" routerLink="/" fragment="shop">Shop</a></li>
-
+            <li>
+                <a href="" routerLink="/" fragment="shop">
+                    Shop
+                </a>
+            </li>
             <li class="cart">
                 <a href="" [routerLink]="'/cart'" routerLinkActive="active">
                     <div class="items">
                         <span *ngIf="cartItems.length > 0" class="one"></span>
-                        <i class="fas fa-cart-shopping"></i>
+                        <i class="fas fa-shopping-cart"></i>
                     </div>
                 </a>
             </li>
-
-
             <li class="cart">
                 <a href="" [routerLink]="'/favourite'" routerLinkActive="active">
                     <div class="items">
                         <span *ngIf="favItems.length > 0" class="one"></span>
-                        <i class="fa-solid fa-heart"></i>
+                        <i class="fas fa-heart"></i>
                     </div>
                 </a>
             </li>
-            <div *ngIf="!isLoggedin; else loggedIn" id="navbar">
-                <li><a href="" [routerLink]="'/login'" routerLinkActive="active">Login</a></li>
-                <li><a href="" [routerLink]="'/signup'" routerLinkActive="active">Signup</a></li>
+            <div *ngIf="!isLoggedin; else loggedIn" class="loginsignup">
+                <li>
+                    <a href="" [routerLink]="'/login'" routerLinkActive="active">
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a href="" [routerLink]="'/signup'" routerLinkActive="active">
+                        Signup
+                    </a>
+                </li>
             </div>
             <ng-template #loggedIn>
-                <li><a href="" (click)="onlogout()" routerLinkActive="active">Logout</a></li>
+                <li>
+                    <a href="" (click)="onlogout()" routerLinkActive="active">
+                        Logout
+                    </a>
+                </li>
             </ng-template>
         </ul>
+    </div>
+    <!-- Hamburger icon for mobile -->
+    <div id="mobile">
+        <i class="fas fa-bars" (click)="toggleNavbar()"></i>
     </div>
 </div>

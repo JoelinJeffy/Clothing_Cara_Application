@@ -20,7 +20,7 @@ import { appReducer } from './app.state';
 import { SharedModule } from './shared/shared.module';
 import { ErrorComponent } from './features/error/error.component';
 import { ProductsService } from './Services/products.service';
-import { ApiInterceptor } from './interceptor/api.interceptor';
+import { AuthInterceptor } from './interceptor/api.interceptor';
 import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 @NgModule({
@@ -48,7 +48,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar'
     ProductsService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

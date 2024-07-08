@@ -36,7 +36,6 @@ export class LoginComponent {
     if (retrievedData) {
       try {
         signupUsers = JSON.parse(retrievedData).user || [];
-        console.log(signupUsers);
       } catch {
         localStorage.removeItem('signupState');
       }
@@ -53,8 +52,8 @@ export class LoginComponent {
         this.store.dispatch(loginAction());
         this.store.dispatch(getUser({ user }));
         this.snackBar
-          .open('Login to continue', 'Close', {
-            duration: 5000,
+          .open('You are logged in', 'Close', {
+            duration: 1000,
           })
           .afterDismissed()
           .subscribe(() => {

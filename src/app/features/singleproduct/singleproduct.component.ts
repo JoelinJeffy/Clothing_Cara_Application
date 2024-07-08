@@ -53,7 +53,7 @@ export class SingleproductComponent {
       .subscribe(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-    this.store.dispatch(loadProducts());
+   
     this.products$ = this.store
       .select(getFilteredProducts)
       .pipe(map((products) => products ?? []));
@@ -83,7 +83,7 @@ export class SingleproductComponent {
         })
         .afterDismissed()
         .subscribe(() => {
-          this.route.navigate(['/']);
+          this.route.navigate(['/login']);
         });
     }
   }

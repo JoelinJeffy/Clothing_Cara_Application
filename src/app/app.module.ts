@@ -22,7 +22,7 @@ import { ErrorComponent } from './features/error/error.component';
 import { ProductsService } from './Services/products.service';
 import { ApiInterceptor } from './interceptor/api.interceptor';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { ContactusComponent } from './features/contactus/contactus.component'
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [AppComponent, ErrorComponent],
@@ -45,6 +45,7 @@ import { ContactusComponent } from './features/contactus/contactus.component'
     FormsModule,
     SharedModule,
     MatSnackBarModule,
+    LazyLoadImageModule
   ],
   providers: [
     provideAnimationsAsync(),

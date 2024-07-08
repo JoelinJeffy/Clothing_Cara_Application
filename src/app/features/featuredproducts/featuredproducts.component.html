@@ -18,7 +18,7 @@
 
     <div class="pro-container">
         <div class="pro" *ngFor="let product of products$ | async">
-            <img [src]="product.image" [routerLink]="'/products/'+product.id" />
+            <img [lazyLoad]="product.image" class="lazy-img"  [routerLink]="'/products/'+product.id" />
             <div class="des">
                 <span>{{product.brand}}</span>
                 <h5>{{product.description}}</h5>

@@ -16,17 +16,13 @@ export class AppComponent {
   ngOnInit(): void {
     // var uuid = uuidv4();
     // console.log(uuid);
-    // sessionStorage.setItem('uuid',uuid)
-     const loggedInUser = localStorage.getItem('loggedInUser');
-     if (loggedInUser) {
-       const user = JSON.parse(loggedInUser).user;
-       this.store.dispatch(loginAction());
-       this.store.dispatch(getUser({ user }));
-     }
-   
+    // sessionStorage.setItem('uuid', 'uuid');
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+      const user = JSON.parse(loggedInUser).user;
+      this.store.dispatch(loginAction());
+      this.store.dispatch(getUser({ user }));
+    }
   }
-  constructor(private store:Store<AppState>) {
-   
-  }
+  constructor(private store: Store<AppState>) {}
 }
-

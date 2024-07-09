@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Review } from '../../models/Review';
 import { addProductReview } from '../../store/reviews/review.action';
@@ -32,6 +32,7 @@ export class SingleproductComponent {
   reviewsFromLocalStorage: Review[] = [];
   user!: string;
   allReviews: Review[] = [];
+  reviews$: Observable<Review[]> = of([]);
 
   constructor(
     private router: ActivatedRoute,
@@ -53,7 +54,7 @@ export class SingleproductComponent {
       .subscribe(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-   
+
     this.products$ = this.store
       .select(getFilteredProducts)
       .pipe(map((products) => products ?? []));
@@ -88,19 +89,24 @@ export class SingleproductComponent {
     }
   }
 
-  getReviews(productId: string): Observable<Review[]> {
+  getReviews(productId: string) {
     const ngrxReviews$ = this.store.pipe(
       select(getReviewsForProduct(productId))
     );
+
     const localStorageKey = `product_reviews_${productId}`;
     const localStorageReviews = JSON.parse(
       localStorage.getItem(localStorageKey) || '[]'
     );
 
-    return ngrxReviews$.pipe(
-      map((ngrxReviews) => {
-        const mergedReviews = [...ngrxReviews, ...localStorageReviews];
-        return mergedReviews;
+    this.reviews$ = combineLatest([ngrxReviews$, of(localStorageReviews)]).pipe(
+      map(([ngrxReviews, localStorageReviews]) => {
+        const allReviews = [...ngrxReviews, ...localStorageReviews];
+
+        return allReviews.filter(
+          (review, index, self) =>
+            index === self.findIndex((r) => r.timestamp === review.timestamp)
+        );
       })
     );
   }
@@ -124,6 +130,7 @@ export class SingleproductComponent {
     localStorage.setItem(localStorageKey, JSON.stringify(updatedReviews));
 
     this.newReview = '';
+    this.getReviews(productId);
   }
 
   generateStars(rating: number): number[] {
@@ -131,18 +138,11 @@ export class SingleproductComponent {
   }
 
   ngOnInit() {
-    this.router.params.subscribe((data) => (this.id = data['id']));
+    this.router.params.subscribe((params) => {
+      this.id = params['id'];
+      this.getReviews(this.id.toString());
+    });
     this.store.select(getUser).subscribe((data) => (this.user = data));
     this.store.dispatch(loadProducts());
-
-    const localStorageKey = `product_reviews_${this.id}`;
-    const localStorageReviews = JSON.parse(
-      localStorage.getItem(localStorageKey) || '[]'
-    );
-    this.reviewsFromLocalStorage = localStorageReviews;
-
-    this.getReviews(this.id.toString()).subscribe((reviews) => {
-      this.allReviews = reviews;
-    });
   }
 }

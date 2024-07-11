@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map } from 'rxjs/operators';
@@ -16,6 +16,7 @@ import {
 } from '../../store/featured-products/products.selector';
 import { loadProducts } from '../../store/featured-products/products.action';
 import { cartAction } from '../../store/cart/cart.actions';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-singleproduct',
@@ -38,26 +39,36 @@ export class SingleproductComponent {
     private router: ActivatedRoute,
     private store: Store<AppState>,
     private route: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
-    this.product$ = this.store.select(getProducts).pipe(
-      map((products) => {
-        if (!products) {
-          return undefined;
-        } else {
-          return products.find((product) => product.id === this.id);
-        }
-      })
-    );
     this.route.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        this.router.params.subscribe(
+          (data) => (this.id = parseInt(data['id']))
+        );
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          this.getSingleProduct();
+        }
       });
-
+    // this.store.dispatch(loadProducts());
     this.products$ = this.store
       .select(getFilteredProducts)
       .pipe(map((products) => products ?? []));
+  }
+
+  getSingleProduct() {
+    this.product$ = this.store.select(getProducts).pipe(
+      map((products) => {
+        if (products) {
+          return products.find((product) => product.id === this.id);
+        } else {
+          return undefined;
+        }
+      })
+    );
   }
 
   addToCart(product: featuredProducts, quantity: number) {
@@ -84,7 +95,7 @@ export class SingleproductComponent {
         })
         .afterDismissed()
         .subscribe(() => {
-          this.route.navigate(['/login']);
+          this.route.navigate(['/']);
         });
     }
   }
@@ -138,11 +149,10 @@ export class SingleproductComponent {
   }
 
   ngOnInit() {
-    this.router.params.subscribe((params) => {
-      this.id = params['id'];
+     this.router.params.subscribe((params) => {
+      this.id = +params['id'];
       this.getReviews(this.id.toString());
     });
     this.store.select(getUser).subscribe((data) => (this.user = data));
-    this.store.dispatch(loadProducts());
   }
 }

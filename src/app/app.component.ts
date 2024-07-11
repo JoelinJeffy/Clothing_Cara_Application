@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
 import { AppState } from './app.state';
@@ -14,15 +15,22 @@ export class AppComponent {
   title = 'angularmainproject';
   public list: string[] = [];
   ngOnInit(): void {
-    // var uuid = uuidv4();
-    // console.log(uuid);
-    // sessionStorage.setItem('uuid', 'uuid');
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    if (loggedInUser) {
-      const user = JSON.parse(loggedInUser).user;
-      this.store.dispatch(loginAction());
-      this.store.dispatch(getUser({ user }));
+     const loggedInUser = localStorage.getItem('loggedInUser');
+     if (loggedInUser) {
+       const user = JSON.parse(loggedInUser).user;
+       this.store.dispatch(loginAction());
+       this.store.dispatch(getUser({ user }));
     }
+    
+    var uuid = uuidv4();
+    if (isPlatformBrowser(this.platformId)) {
+     sessionStorage.setItem('uuid',this.generateUUID())
+    }
+    
+   
   }
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, @Inject(PLATFORM_ID) private platformId: object) { }
+  generateUUID() {
+    return uuidv4();
+  }
 }

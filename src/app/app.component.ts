@@ -22,7 +22,7 @@ export class AppComponent {
        this.store.dispatch(getUser({ user }));
     }
     
-    var uuid = uuidv4();
+   
     if (isPlatformBrowser(this.platformId)) {
      sessionStorage.setItem('uuid',this.generateUUID())
     }

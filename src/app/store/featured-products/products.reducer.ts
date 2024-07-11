@@ -69,9 +69,29 @@ export const productsReducer = createReducer(
         filteredProducts =
           state.products?.filter((product) => product.price > 10) ?? null;
         break;
-      case 'plus':
+      case '12plus':
         filteredProducts =
           state.products?.filter((product) => product.price >= 12) ?? null;
+        break;
+      case 'rating5':
+        filteredProducts =
+          state.products?.filter((product) => product.rating === 5) ?? null;
+        break;
+      case 'rating4':
+        filteredProducts =
+          state.products?.filter((product) => product.rating === 4) ?? null;
+        break;
+      case 'rating3':
+        filteredProducts =
+          state.products?.filter((product) => product.rating === 3) ?? null;
+        break;
+      case 'rating2':
+        filteredProducts =
+          state.products?.filter((product) => product.rating === 2) ?? null;
+        break;
+      case 'rating1':
+        filteredProducts =
+          state.products?.filter((product) => product.rating === 1) ?? null;
         break;
       default:
         filteredProducts = state.products;

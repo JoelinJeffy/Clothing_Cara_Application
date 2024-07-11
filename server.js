@@ -44,7 +44,7 @@ const products = [
         "image": "./assets/images/products/f3.jpg",
         "brand": "adidas",
         "description": "Designer T-Shirt",
-        "rating": 5,
+        "rating": 4,
         "price": 5,
         "stripeid": "price_1PZvtNFmLPIdD590cDCzYXV9",
         "details": "versatile wardrobe essentials that combine comfort and style, making them suitable for a wide range of occasions. Whether you're dressing down for a relaxed weekend or adding a touch of flair to your everyday look, our selection of casual shirts offers something for everyone."
@@ -84,7 +84,7 @@ const products = [
         "image": "./assets/images/products/f7.jpg",
         "brand": "adidas",
         "description": "Embroidery trouser",
-        "rating": 5,
+        "rating": 2,
         "price": 7,
         "stripeid": "price_1PZvvdFmLPIdD590fV0Wsf7d",
         "details": "versatile wardrobe essentials that combine comfort and style, making them suitable for a wide range of occasions. Whether you're dressing down for a relaxed weekend or adding a touch of flair to your everyday look, our selection of casual shirts offers something for everyone."
@@ -94,7 +94,7 @@ const products = [
         "image": "./assets/images/products/f8.jpg",
         "brand": "adidas",
         "description": "Wide neck T-shirt",
-        "rating": 5,
+        "rating": 3,
         "price": 7,
         "stripeid": "price_1PZvwAFmLPIdD590tBY3A1be",
         "details": "versatile wardrobe essentials that combine comfort and style, making them suitable for a wide range of occasions. Whether you're dressing down for a relaxed weekend or adding a touch of flair to your everyday look, our selection of casual shirts offers something for everyone."
@@ -134,7 +134,7 @@ const products = [
         "image": "./assets/images/products/n4.jpg",
         "brand": "adidas",
         "description": "Half-sleeve Formal Shirt",
-        "rating": 5,
+        "rating": 1,
         "price": 12,
         "stripeid": "price_1PZvynFmLPIdD590Z4QikjY3",
         "details": "versatile wardrobe essentials that combine comfort and style, making them suitable for a wide range of occasions. Whether you're dressing down for a relaxed weekend or adding a touch of flair to your everyday look, our selection of casual shirts offers something for everyone."
@@ -143,7 +143,7 @@ const products = [
         "image": "./assets/images/products/n5.jpg",
         "brand": "adidas",
         "description": "Baggy Formal Shirt",
-        "rating": 5,
+        "rating": 1,
         "price": 12,
         "stripeid": "price_1PZvzPFmLPIdD590UMVPikGm",
         "details": "versatile wardrobe essentials that combine comfort and style, making them suitable for a wide range of occasions. Whether you're dressing down for a relaxed weekend or adding a touch of flair to your everyday look, our selection of casual shirts offers something for everyone."
@@ -152,7 +152,7 @@ const products = [
         "image": "./assets/images/products/n6.jpg",
         "brand": "adidas",
         "description": "Cotton Trousers",
-        "rating": 5,
+        "rating": 3,
         "price": 3,
         "stripeid": "price_1PZvzqFmLPIdD59012RRBgQY",
         "details": "versatile wardrobe essentials that combine comfort and style, making them suitable for a wide range of occasions. Whether you're dressing down for a relaxed weekend or adding a touch of flair to your everyday look, our selection of casual shirts offers something for everyone."
@@ -161,7 +161,7 @@ const products = [
         "image": "./assets/images/products/n7.jpg",
         "brand": "adidas",
         "description": "Beige Formal Shirt",
-        "rating": 5,
+        "rating": 4,
         "price": 12,
         "stripeid": "price_1PZw0SFmLPIdD590F3MnEfAr",
         "details": "versatile wardrobe essentials that combine comfort and style, making them suitable for a wide range of occasions. Whether you're dressing down for a relaxed weekend or adding a touch of flair to your everyday look, our selection of casual shirts offers something for everyone."
@@ -170,7 +170,7 @@ const products = [
         "image": "./assets/images/products/n8.jpg",
         "brand": "adidas",
         "description": "Brown Half-Sleeve",
-        "rating": 5,
+        "rating": 4,
         "price": 12,
         "stripeid": "price_1PZw1iFmLPIdD590z2jRhKya",
         "details": "versatile wardrobe essentials that combine comfort and style, making them suitable for a wide range of occasions. Whether you're dressing down for a relaxed weekend or adding a touch of flair to your everyday look, our selection of casual shirts offers something for everyone."

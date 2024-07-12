@@ -41,6 +41,10 @@
   font-weight: 600;
 }
 
+.hero-card button:hover{
+  cursor: pointer;
+}
+
 .hero-card {
   display: flex;
   flex-direction: column;

@@ -40,7 +40,7 @@ export class NavbarComponent {
   onlogout() {
      localStorage.removeItem('loggedInUser');
      this.store.dispatch(logoutAction());
-     this.router.navigate(['/login']);
+    
   }
   onSearch(search: string) {
     if (search === null || search.trim() === '') {

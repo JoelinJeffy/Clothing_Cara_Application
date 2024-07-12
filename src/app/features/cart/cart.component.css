@@ -45,6 +45,7 @@ td button {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+  
 }
 
 td button:hover {
@@ -129,6 +130,11 @@ td button:hover {
     width: 30%;
     padding: 10px;
     margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+#subtotal button:hover{
+    cursor: pointer;
 }
 
 .no-fav-content {

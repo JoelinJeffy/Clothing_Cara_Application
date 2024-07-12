@@ -14,7 +14,6 @@ import {
   getFilteredProducts,
   getProducts,
 } from '../../store/featured-products/products.selector';
-import { loadProducts } from '../../store/featured-products/products.action';
 import { cartAction } from '../../store/cart/cart.actions';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -53,7 +52,6 @@ export class SingleproductComponent {
           this.getSingleProduct();
         }
       });
-    // this.store.dispatch(loadProducts());
     this.products$ = this.store
       .select(getFilteredProducts)
       .pipe(map((products) => products ?? []));

@@ -7,6 +7,8 @@ import { AppState } from '../../app.state';
 import { quantityAction, removeCart } from '../../store/cart/cart.actions';
 import { getCartItems } from '../../store/cart/cart.selector';
 import axios from 'axios';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-cart',
@@ -67,6 +69,20 @@ export class CartComponent {
     this.store.dispatch(
       quantityAction({ id: product.id, value: updatedQuantity })
     );
+  }
+
+  downloadPDF() {
+    const data = document.getElementById('pdfcart'); 
+    if (data) {
+      html2canvas(data).then((canvas) => {
+        const imgWidth = 208;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save('page.pdf');
+      });
+    }
   }
 
   ngOnInit() {}

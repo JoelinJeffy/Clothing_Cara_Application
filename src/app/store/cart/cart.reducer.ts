@@ -52,8 +52,4 @@ export const cartReducer = createReducer(
   })
 );
 
-// function saveStateToLocalStorage(state: CartState) {
 
-//     localStorage.setItem('cartProducts', JSON.stringify(state.products));
-//     localStorage.setItem('cartQuantity', JSON.stringify(state.quantity));
-// }

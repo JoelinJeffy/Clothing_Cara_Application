@@ -36,7 +36,7 @@
         </div>
     
         <form class="add-review-form" (ngSubmit)="addReview(product.id.toString())">
-            <textarea placeholder="Add a review..." [(ngModel)]="newReview" name="newReview" required></textarea>
+            <textarea placeholder="Add a review..." [(ngModel)]="newReview" name="newReview" (keyup.enter)="addReview(product.id.toString())" required></textarea>
             <button type="submit">Submit Review</button>
         </form>
     </div>

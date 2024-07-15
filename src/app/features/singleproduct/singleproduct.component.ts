@@ -73,11 +73,8 @@ export class SingleproductComponent {
     this.store
       .select(getIsLoggedIn)
       .subscribe((data) => (this.loggedIn = data));
-    console.log(this.loggedIn);
     if (this.loggedIn) {
-      console.log(this.loggedIn);
       this.store.dispatch(cartAction({ product, quantity }));
-
       this.snackBar
         .open('Product added to cart', 'Close', {
           duration: 5000,
@@ -147,7 +144,7 @@ export class SingleproductComponent {
   }
 
   ngOnInit() {
-     this.router.params.subscribe((params) => {
+    this.router.params.subscribe((params) => {
       this.id = +params['id'];
       this.getReviews(this.id.toString());
     });

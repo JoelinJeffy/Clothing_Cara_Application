@@ -13,7 +13,7 @@ export const favouriteReducer = createReducer(
       return state;
     }
     const updatedProducts = [...state.products, action.product];
-    console.log(updatedProducts);
+  
     return {
       ...state,
       products: updatedProducts,

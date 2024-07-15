@@ -24,9 +24,7 @@ export class CartComponent {
     this.store
       .select(getCartItems)
       .subscribe((products) => (this.products = products));
-    console.log(this.products);
     this.product$ = this.store.select(getCartItems);
-    console.log(this.product$);
     this.product$
       .pipe(
         map((products) => {
@@ -72,7 +70,7 @@ export class CartComponent {
   }
 
   downloadPDF() {
-    const data = document.getElementById('pdfcart'); 
+    const data = document.getElementById('pdfcart');
     if (data) {
       html2canvas(data).then((canvas) => {
         const imgWidth = 208;

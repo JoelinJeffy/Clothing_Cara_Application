@@ -28,12 +28,7 @@ export class ApiInterceptor implements HttpInterceptor {
       setHeaders: { Authorization: `${authToken}` },
     });
 
-    return next.handle(modifiedReq).pipe(tap((event) => {
-      if (event.type === HttpEventType.Response) {
-      
-        console.log('Response has arrived', event.body);
-      }
-    }));
+    return next.handle(modifiedReq);
   
   }
 }

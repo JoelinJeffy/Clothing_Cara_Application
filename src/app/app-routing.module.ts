@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './features/error/error.component';
 import { AuthGuard } from './guard/auth.guard';
 
@@ -48,7 +48,9 @@ const routes: Routes = [
   {
     path: 'contactus',
     loadChildren: () =>
-      import('./features/contactus/contactus.module').then((m) => m.ContactusModule),
+      import('./features/contactus/contactus.module').then(
+        (m) => m.ContactusModule
+      ),
   },
   { path: '**', component: ErrorComponent },
 ];

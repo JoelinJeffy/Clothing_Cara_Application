@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { AppState } from '../../app.state';
+import { featuredProducts } from '../../models/FeaturedProducts';
 import { getCartItems } from '../../store/cart/cart.selector';
 import { getFavourites } from '../../store/favourite/favourite.selector';
+import { searchProducts } from '../../store/featured-products/products.action';
 import { logoutAction } from '../../store/login/login.actions';
 import { getIsLoggedIn } from '../../store/login/login.selector';
-import { featuredProducts } from '../../models/FeaturedProducts';
-import { AppState } from '../../app.state';
-import { searchProducts } from '../../store/featured-products/products.action';
 
 @Component({
   selector: 'app-navbar',
@@ -38,9 +38,8 @@ export class NavbarComponent {
       .subscribe((data) => (this.favItems = data));
   }
   onlogout() {
-     localStorage.removeItem('loggedInUser');
-     this.store.dispatch(logoutAction());
-    
+    localStorage.removeItem('loggedInUser');
+    this.store.dispatch(logoutAction());
   }
   onSearch(search: string) {
     if (search === null || search.trim() === '') {

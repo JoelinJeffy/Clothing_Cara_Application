@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { User } from '../../models/User';
 import { AppState } from '../../app.state';
+import { User } from '../../models/User';
 import { getUser, loginAction } from '../../store/login/login.actions';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',

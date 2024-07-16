@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
+import { AppState } from '../../app.state';
+import { featuredProducts } from '../../models/FeaturedProducts';
 import { cartAction } from '../../store/cart/cart.actions';
 import { favouriteAction } from '../../store/favourite/favourite.actions';
-import { getIsLoggedIn } from '../../store/login/login.selector';
-import { featuredProducts } from '../../models/FeaturedProducts';
-import { AppState } from '../../app.state';
 import {
   filterProductsByPrice,
-  loadProducts,
+  loadProducts
 } from '../../store/featured-products/products.action';
 import { getFilteredProducts } from '../../store/featured-products/products.selector';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { getIsLoggedIn } from '../../store/login/login.selector';
 
 @Component({
   selector: 'app-featuredproducts',

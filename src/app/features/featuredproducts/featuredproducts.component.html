@@ -26,7 +26,7 @@
     </div>
 
     <div class="pro-container">
-        <div class="pro" *ngFor="let product of products$ | async">
+        <div class="pro" *ngFor="let product of products$ | async" appFeaturedproducts>
             <img [lazyLoad]="product.image" class="lazy-img"  [routerLink]="'/products/'+product.id" />
             <div class="des">
                 <span>{{product.brand}}</span>

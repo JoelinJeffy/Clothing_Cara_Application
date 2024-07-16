@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
-  Validators,
   AbstractControl,
+  FormControl,
+  FormGroup,
   ValidatorFn,
+  Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { User } from '../../models/User';
 import { AppState } from '../../app.state';
+import { User } from '../../models/User';
 import { signup } from '../../store/signup/signup.actions';
 
 @Component({

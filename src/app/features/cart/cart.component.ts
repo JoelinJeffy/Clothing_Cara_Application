@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
-import { featuredProducts } from '../../models/FeaturedProducts';
-import { AppState } from '../../app.state';
-import { quantityAction, removeCart } from '../../store/cart/cart.actions';
-import { getCartItems } from '../../store/cart/cart.selector';
 import axios from 'axios';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { map, Observable } from 'rxjs';
+import { AppState } from '../../app.state';
+import { featuredProducts } from '../../models/FeaturedProducts';
+import { quantityAction, removeCart } from '../../store/cart/cart.actions';
+import { getCartItems } from '../../store/cart/cart.selector';
 
 @Component({
   selector: 'app-cart',
@@ -21,6 +21,7 @@ export class CartComponent {
   totalPrice!: number | undefined;
   totalQuantity!: number | undefined;
   constructor(private store: Store<AppState>, private router: Router) {
+    // Getting cart items and calculating totalPrice and totalQuantity
     this.store
       .select(getCartItems)
       .subscribe((products) => (this.products = products));
@@ -52,16 +53,20 @@ export class CartComponent {
       });
   }
 
+  // removing items from cart
   removeCart(product: featuredProducts) {
     this.store.dispatch(removeCart({ product }));
   }
 
+  // Increasing the quantity of product
   increment(product: featuredProducts) {
     let updatedQuantity = (product.quantity || 0) + 1;
     this.store.dispatch(
       quantityAction({ id: product.id, value: updatedQuantity })
     );
   }
+
+  // Decreasing the quantity of product
   decrement(product: featuredProducts) {
     let updatedQuantity = product.quantity > 1 ? product.quantity - 1 : 1;
     this.store.dispatch(
@@ -69,6 +74,7 @@ export class CartComponent {
     );
   }
 
+  // Downlaoding the pdf
   downloadPDF() {
     const data = document.getElementById('pdfcart');
     if (data) {
@@ -83,6 +89,7 @@ export class CartComponent {
     }
   }
 
+  // Downlaoding the cart items
   ngOnInit() {}
   async checkout() {
     const stripeid = this.products?.map((product) => {

@@ -15,21 +15,21 @@ export class AppComponent {
   title = 'angularmainproject';
   public list: string[] = [];
   ngOnInit(): void {
-     const loggedInUser = localStorage.getItem('loggedInUser');
-     if (loggedInUser) {
-       const user = JSON.parse(loggedInUser).user;
-       this.store.dispatch(loginAction());
-       this.store.dispatch(getUser({ user }));
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+      const user = JSON.parse(loggedInUser).user;
+      this.store.dispatch(loginAction());
+      this.store.dispatch(getUser({ user }));
     }
-    
-   
+
     if (isPlatformBrowser(this.platformId)) {
-     sessionStorage.setItem('uuid',this.generateUUID())
+      sessionStorage.setItem('uuid', this.generateUUID());
     }
-    
-   
   }
-  constructor(private store: Store<AppState>, @Inject(PLATFORM_ID) private platformId: object) { }
+  constructor(
+    private store: Store<AppState>,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
   generateUUID() {
     return uuidv4();
   }

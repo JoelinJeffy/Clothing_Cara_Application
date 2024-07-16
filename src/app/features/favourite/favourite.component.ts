@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { cartAction } from '../../store/cart/cart.actions';
-import { getIsLoggedIn } from '../../store/login/login.selector';
-import { featuredProducts } from '../../models/FeaturedProducts';
 import { AppState } from '../../app.state';
+import { featuredProducts } from '../../models/FeaturedProducts';
+import { cartAction } from '../../store/cart/cart.actions';
 import { removefavourite } from '../../store/favourite/favourite.actions';
 import { getFavourites } from '../../store/favourite/favourite.selector';
+import { getIsLoggedIn } from '../../store/login/login.selector';
 
 @Component({
   selector: 'app-favourite',

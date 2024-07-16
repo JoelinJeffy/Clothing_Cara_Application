@@ -1,21 +1,21 @@
+import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { filter, map } from 'rxjs/operators';
 import { combineLatest, Observable, of } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Review } from '../../models/Review';
-import { addProductReview } from '../../store/reviews/review.action';
-import { getReviewsForProduct } from '../../store/reviews/review.selector';
-import { getIsLoggedIn, getUser } from '../../store/login/login.selector';
+import { filter, map } from 'rxjs/operators';
 import { AppState } from '../../app.state';
 import { featuredProducts } from '../../models/FeaturedProducts';
+import { Review } from '../../models/Review';
+import { cartAction } from '../../store/cart/cart.actions';
 import {
   getFilteredProducts,
   getProducts,
 } from '../../store/featured-products/products.selector';
-import { cartAction } from '../../store/cart/cart.actions';
-import { isPlatformBrowser } from '@angular/common';
+import { getIsLoggedIn, getUser } from '../../store/login/login.selector';
+import { addProductReview } from '../../store/reviews/review.action';
+import { getReviewsForProduct } from '../../store/reviews/review.selector';
 
 @Component({
   selector: 'app-singleproduct',

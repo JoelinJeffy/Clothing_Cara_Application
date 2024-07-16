@@ -1,28 +1,30 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import {
-  BrowserModule,
-  provideClientHydration,
-} from '@angular/platform-browser';
+  MatError,
+  MatFormField,
+  MatFormFieldModule,
+  MatLabel,
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserModule } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatError, MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { ProductEffects } from './store/featured-products/products.effects';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { appReducer } from './app.state';
-import { SharedModule } from './shared/shared.module';
 import { ErrorComponent } from './features/error/error.component';
-import { ProductsService } from './Services/products.service';
 import { ApiInterceptor } from './interceptor/api.interceptor';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ProductsService } from './Services/products.service';
+import { SharedModule } from './shared/shared.module';
+import { ProductEffects } from './store/featured-products/products.effects';
 
 @NgModule({
   declarations: [AppComponent, ErrorComponent],
@@ -45,7 +47,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     FormsModule,
     SharedModule,
     MatSnackBarModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
   ],
   providers: [
     provideAnimationsAsync(),

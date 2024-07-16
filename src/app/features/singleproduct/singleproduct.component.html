@@ -46,7 +46,7 @@
     <h2>Best Selling Products</h2>
     <p>Summer Collection New Modern Design</p>
     <div class="pro-container">
-        <div class="pro" *ngFor="let product of products$ | async">
+        <div class="pro" *ngFor="let product of products$ | async" appFeaturedproducts>
             <img [src]="product.image" [routerLink]="'/products/'+product.id" />
             <div class="des">
                 <span>{{product.brand}}</span>

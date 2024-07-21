@@ -20,9 +20,9 @@
                 <tr *ngFor="let product of products">
                     <td><img [src]="product.image" /></td>
                     <td>{{ product.description }}</td>
-                    <td>${{ product.price }}</td>
+                    <td>{{ product.price | eurocurrency }}</td>
                     <td>{{ product.quantity }}</td>
-                    <td>{{ product.price * product.quantity }}</td>
+                    <td>{{ product.price * product.quantity | eurocurrency}}</td>
                     <td>
                         <span class="span" (click)="increment(product)">+</span>
                         <span class="span" (click)="decrement(product)">-</span>
@@ -38,7 +38,7 @@
         <table>
             <tr>
                 <td>Cart Subtotal</td>
-                <td>${{ totalPrice }}</td>
+                <td>{{ totalPrice | eurocurrency }}</td>
             </tr>
             <tr>
                 <td>Shipping</td>
@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <td><strong>Total Quantity: {{ totalQuantity }}</strong></td>
-                <td><strong>Total: ${{ totalPrice }}</strong></td>
+                <td><strong>Total: {{ totalPrice | eurocurrency }}</strong></td>
             </tr>
         </table>
         <button (click)="checkout()">Proceed to checkout</button>

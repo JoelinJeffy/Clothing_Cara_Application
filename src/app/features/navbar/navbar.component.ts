@@ -39,6 +39,7 @@ export class NavbarComponent {
   }
   onlogout() {
     localStorage.removeItem('loggedInUser');
+    sessionStorage.removeItem('cartItem');
     this.store.dispatch(logoutAction());
   }
   onSearch(search: string) {

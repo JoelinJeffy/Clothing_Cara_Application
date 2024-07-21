@@ -1,0 +1,36 @@
+<div class="booking-container">
+    <div class="booking-header">
+        <img src="./../../../assets/images/logo.png" alt="Logo" [routerLink]="'/'" />
+        <div class="booking-header-title">
+            <h1>My Orders</h1>
+
+        </div>
+    </div>
+
+    <div class="booking-body">
+        <div *ngFor="let item of cartItems" class="single-card">
+            <div class="item-image">
+                <img [src]="item.image" alt="Item Image" />
+            </div>
+            <div class="item-details">
+                <h2>{{ item.description }}</h2>
+                <p>{{ item.brand }}</p>
+                <p>{{ item.price | eurocurrency }}</p>
+            </div>
+            <div class="item-price">
+                <h2>{{ item.price * item.quantity | eurocurrency }}</h2>
+                <h4>Qty: {{ item.quantity }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="booking-summary">
+        <h1>Total Price:<strong> {{ totalPrice | eurocurrency }}</strong></h1>
+        <h1>Total Quantity: <strong>{{ totalQuantity }} </strong></h1>
+        <h1>Order Date:<strong>{{date | date: 'mediumDate' }}</strong></h1>
+    </div>
+    <div [@fadeIn] *ngIf="showConfetti" class="confetti-container">
+        <mat-icon class="confetti-icon">emoji_events</mat-icon>
+        <p>Thank you for booking!</p>
+    </div>
+
+</div>

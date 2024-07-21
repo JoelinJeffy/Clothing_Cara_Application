@@ -45,7 +45,7 @@ td button {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-  
+
 }
 
 td button:hover {
@@ -86,7 +86,7 @@ td button:hover {
         font-weight: bold;
         text-align: left;
     }
-   
+
     #subtotal {
         width: 70%;
         margin-left: 10%;
@@ -133,7 +133,7 @@ td button:hover {
     margin-right: 10px;
 }
 
-#subtotal button:hover{
+#subtotal button:hover {
     cursor: pointer;
 }
 

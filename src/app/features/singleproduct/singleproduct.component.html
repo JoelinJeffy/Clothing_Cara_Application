@@ -7,7 +7,7 @@
     <div class="section2">
         <h3>{{product.description}}</h3>
         <strong>
-            <h1>${{product.price}}</h1>
+            <h1>{{product.price | eurocurrency  }}</h1>
         </strong>
         <div class="option">
             <select>
@@ -57,7 +57,7 @@
                         <span>⭐</span>
                     </ng-container>
                 </div>
-                <h4>${{product.price}}</h4>
+                <h4>{{product.price | eurocurrency }}</h4>
 
             </div>
         </div>

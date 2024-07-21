@@ -2,32 +2,32 @@
     <div id="product-title">
         <h2>Featured Products</h2>
         <p>Summer Collection New Modern Design</p>
+
         <div class="select">
-            <label>Sort by</label>
-        <select #sortSelect (change)="filterProducts(sortSelect.value)" id="sortSelect">
-            <option value="default">None</option>
-            <optgroup label="Price">
-                <option value="lowToHigh">Low to High</option>
-                <option value="highToLow">High to Low</option>
-                <option value="lessThan10">Less than 10</option>
-                <option value="lessThan5">Less than 5</option>
-                <option value="above10">Above 10</option>
-                <option value="12plus">12+</option>
-            </optgroup>
-            <optgroup label="Rating">
-                <option value="rating5">5</option>
-                <option value="rating4">4</option>
-                <option value="rating3">3</option>
-                <option value="rating2">2</option>
-                <option value="rating1">1</option>
-            </optgroup>
-        </select>
+            <select #sortSelect (change)="filterProducts(sortSelect.value)" id="sortSelect">
+                <option value="default"> All</option>
+                <optgroup label="Price">
+                    <option value="lowToHigh">Low to High</option>
+                    <option value="highToLow">High to Low</option>
+                    <option value="lessThan10">Less than 10 €</option>
+                    <option value="lessThan5">Less than 5 €</option>
+                    <option value="above10">Above 10 €</option>
+                    <option value="12plus">12+ €</option>
+                </optgroup>
+                <optgroup label="Rating">
+                    <option value="rating5">⭐⭐⭐⭐⭐</option>
+                    <option value="rating4">⭐⭐⭐⭐</option>
+                    <option value="rating3">⭐⭐⭐</option>
+                    <option value="rating2">⭐⭐</option>
+                    <option value="rating1">⭐</option>
+                </optgroup>
+            </select>
         </div>
     </div>
 
     <div class="pro-container">
         <div class="pro" *ngFor="let product of products$ | async" appFeaturedproducts>
-            <img [lazyLoad]="product.image" class="lazy-img"  [routerLink]="'/products/'+product.id" />
+            <img [lazyLoad]="product.image" class="lazy-img" [routerLink]="'/products/'+product.id" />
             <div class="des">
                 <span>{{product.brand}}</span>
                 <h5>{{product.description}}</h5>
@@ -37,7 +37,7 @@
                         <span>⭐</span>
                     </ng-container>
                 </div>
-                <h4>${{product.price}}</h4>
+                <h4>{{product.price | eurocurrency}}</h4>
             </div>
             <button class="button" (click)="toggleFav(product)">Wishlist</button>
             <i class="fas fa-shopping-cart" (click)="addToCart(product,1)"></i>

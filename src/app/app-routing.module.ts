@@ -52,6 +52,12 @@ const routes: Routes = [
         (m) => m.ContactusModule
       ),
   },
+  {
+    path: 'booking',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./features/booking/booking.module').then((m) => m.BookingModule),
+  },
   { path: '**', component: ErrorComponent },
 ];
 

@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -7,10 +8,12 @@ import {
   MatError,
   MatFormField,
   MatFormFieldModule,
-  MatLabel,
+  MatLabel
 } from '@angular/material/form-field';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { RouterModule } from '@angular/router';
@@ -24,7 +27,9 @@ import { ErrorComponent } from './features/error/error.component';
 import { ApiInterceptor } from './interceptor/api.interceptor';
 import { ProductsService } from './Services/products.service';
 import { SharedModule } from './shared/shared.module';
+import { AmenitiesEffects } from './store/amenities/amenities.effects';
 import { ProductEffects } from './store/featured-products/products.effects';
+
 
 @NgModule({
   declarations: [AppComponent, ErrorComponent],
@@ -41,16 +46,21 @@ import { ProductEffects } from './store/featured-products/products.effects';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    OverlayModule,
+    MatTooltipModule,
+     MatIconModule ,
     FormsModule,
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([ProductEffects]),
+    EffectsModule.forRoot([ProductEffects,AmenitiesEffects]),
     FormsModule,
     SharedModule,
     MatSnackBarModule,
     LazyLoadImageModule,
+    MatIcon
   ],
   providers: [
     provideAnimationsAsync(),
+   
     ProductsService,
     {
       provide: HTTP_INTERCEPTORS,

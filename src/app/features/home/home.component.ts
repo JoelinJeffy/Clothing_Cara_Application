@@ -15,7 +15,9 @@ export class HomeComponent {
   }
   JumpToSection(shop: string | null) {
     if (shop) {
-      document.getElementById(shop)?.scrollIntoView({ behavior: 'smooth' });
+      document
+        .getElementById(shop)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 }

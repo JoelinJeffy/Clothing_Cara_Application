@@ -3,7 +3,7 @@ import {
   cartAction,
   quantityAction,
   removeCart,
-  totalQuantity,
+  totalQuantity
 } from './cart.actions';
 import { initialstate } from './cart.state';
 
@@ -15,11 +15,13 @@ export const cartReducer = createReducer(
     );
     const updatedProducts = productExists
       ? state.products.map((p) =>
-          p.id === action.product.id
-            ? { ...p, quantity: p.quantity + action.quantity }
-            : p
-        )
+        p.id === action.product.id
+          ? { ...p, quantity: p.quantity + action.quantity }
+          : p
+      )
       : [...state.products, { ...action.product, quantity: action.quantity }];
+   
+    sessionStorage.setItem(`cartItem`, JSON.stringify(updatedProducts));
 
     return {
       ...state,
@@ -51,5 +53,6 @@ export const cartReducer = createReducer(
     };
   })
 );
+
 
 

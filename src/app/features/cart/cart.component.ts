@@ -49,6 +49,7 @@ export class CartComponent {
       )
       .subscribe((totals) => {
         this.totalPrice = totals?.totalPrice;
+
         this.totalQuantity = totals?.totalQuantity;
       });
   }
@@ -101,7 +102,7 @@ export class CartComponent {
     const req = {
       line_items: stripeid,
       mode: 'payment',
-      success_url: 'http://localhost:4200',
+      success_url: 'http://localhost:4200/booking',
       cancel_url: 'http://localhost:4200',
     };
     await axios

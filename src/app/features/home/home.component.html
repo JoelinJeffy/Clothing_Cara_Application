@@ -1,4 +1,17 @@
 <app-navbar id="home"></app-navbar>
 <app-hero></app-hero>
 <app-featuredproducts id="shop"></app-featuredproducts>
+<ng-container *appBanner>
+    <div class="banner">
+        <img src="../../../assets/images/banner/b2.jpg" alt="Banner Image" class="banner-image" />
+        <div class="banner-overlay">
+            <div class="offer-details">
+                <h1>Thank you for signing in!</h1>
+                <p>Stay tuned for more offers and enjoy shopping!</p>
+                <button routerLink="/" fragment="home" class="button">Shop</button>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<app-amenities></app-amenities>
 <app-footer></app-footer>

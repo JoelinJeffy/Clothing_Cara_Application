@@ -5,6 +5,7 @@ import axios from 'axios';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { map, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import { AppState } from '../../app.state';
 import { featuredProducts } from '../../models/FeaturedProducts';
 import { quantityAction, removeCart } from '../../store/cart/cart.actions';
@@ -102,11 +103,11 @@ export class CartComponent {
     const req = {
       line_items: stripeid,
       mode: 'payment',
-      success_url: 'http://localhost:4200/booking',
-      cancel_url: 'http://localhost:4200',
+      success_url: `${environment.baseUrl}/booking`,
+      cancel_url: `${environment.baseUrl}`,
     };
     await axios
-      .post('http://localhost:4242/create-checkout-session/', req, {
+      .post(`${environment.apiUrl}/create-checkout-session/`, req, {
         headers: {
           'Content-Type': 'application/json',
           Accept: '*/*',

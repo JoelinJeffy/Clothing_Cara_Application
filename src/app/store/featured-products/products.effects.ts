@@ -3,7 +3,7 @@ import { Actions } from '@ngrx/effects';
 import { createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
 
-import { ProductsService } from '../../Services/products.service';
+import { ProductsService } from '../../services/products.service';
 import {
   loadProducts,
   loadProductsFailure,

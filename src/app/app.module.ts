@@ -25,7 +25,7 @@ import { AppComponent } from './app.component';
 import { appReducer } from './app.state';
 import { ErrorComponent } from './features/error/error.component';
 import { ApiInterceptor } from './interceptor/api.interceptor';
-import { ProductsService } from './Services/products.service';
+import { ProductsService } from './services/products.service';
 import { SharedModule } from './shared/shared.module';
 import { AmenitiesEffects } from './store/amenities/amenities.effects';
 import { ProductEffects } from './store/featured-products/products.effects';

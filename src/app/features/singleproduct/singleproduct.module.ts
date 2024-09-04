@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule, Routes } from '@angular/router';
+import { HighchartsChartModule } from 'highcharts-angular';
 import { SharedModule } from '../../shared/shared.module';
 import { SingleproductComponent } from './singleproduct.component';
 
@@ -15,7 +16,8 @@ const routes: Routes = [{ path: '', component: SingleproductComponent }];
     CommonModule,
     SharedModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HighchartsChartModule
   ],
   exports: [RouterModule],
 })

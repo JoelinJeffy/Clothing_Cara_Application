@@ -1,0 +1,11 @@
+
+
+<div *ngFor="let options of chartOptionsArray; let i = index" class="charts">
+    <div class="chart-description">
+    <h2>{{products[i].description}}</h2>
+    <img [src]="products[i].image" alt="{{products[i].description}}" class="product-image"></div>
+    <div class="chart-container">
+        <highcharts-chart [Highcharts]="Highcharts" class="chart-container1" [options]="options">
+        </highcharts-chart>
+    </div>
+</div>

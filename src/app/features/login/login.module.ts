@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatError, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { RouterModule, Routes } from '@angular/router';
-
 import { LoginComponent } from './login.component';
 
 const routes: Routes = [{ path: '', component: LoginComponent }];
@@ -17,7 +16,8 @@ const routes: Routes = [{ path: '', component: LoginComponent }];
     ReactiveFormsModule,
     MatFormFieldModule,
     MatLabel,
-    MatError
+    MatError,
+    
   ],
   exports: [RouterModule],
 })

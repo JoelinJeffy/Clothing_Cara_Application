@@ -14,6 +14,7 @@ import { getUser, loginAction } from '../../store/login/login.actions';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
+  loading = false;
   constructor(
     private router: Router,
     private store: Store<AppState>,
@@ -26,6 +27,7 @@ export class LoginComponent {
     });
   }
   onLoginSubmit() {
+    this.loading = true;
     let loginUser: User = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
@@ -46,28 +48,56 @@ export class LoginComponent {
     );
 
     if (foundUser) {
-      if (foundUser.password === loginUser.password) {
-        const user = foundUser.email;
+      const user = foundUser.email;
+      if (foundUser.email === 'admin123@gmail.com') {
         localStorage.setItem('loggedInUser', JSON.stringify({ user }));
         this.store.dispatch(loginAction());
         this.store.dispatch(getUser({ user }));
         this.snackBar
-          .open('You are logged in', 'Close', {
+          .open('You are logged in as Admin', 'Close', {
             duration: 1000,
           })
           .afterDismissed()
           .subscribe(() => {
-            this.router.navigate(['/']);
+            this.loading = false;
+            this.router.navigate(['/admin']);
           });
       } else {
-        this.snackBar.open('Incorrect password. Please try again.', 'Close', {
-          duration: 5000,
-        });
+        if (foundUser.password === loginUser.password) {
+          localStorage.setItem('loggedInUser', JSON.stringify({ user }));
+          this.store.dispatch(loginAction());
+          this.store.dispatch(getUser({ user }));
+          this.snackBar
+            .open('You are logged in', 'Close', {
+              duration: 1000,
+            })
+            .afterDismissed()
+            .subscribe(() => {
+              this.loading = false;
+              this.router.navigate(['/']);
+            });
+        } else {
+          this.snackBar
+            .open('Incorrect password. Please try again.', 'Close', {
+              duration: 1000,
+            })
+            .afterDismissed()
+            .subscribe(() => {
+              this.loading = false;
+              this.router.navigate(['/login']);
+            });;
+        }
       }
     } else {
-      this.snackBar.open('User not found. Sign up to continue.', 'Close', {
-        duration: 5000,
-      });
+      this.snackBar
+        .open('User not found. Sign up to continue.', 'Close', {
+          duration: 1000,
+        })
+        .afterDismissed()
+        .subscribe(() => {
+          this.loading = false;
+          this.router.navigate(['/signup']);
+        });;
     }
 
     this.loginForm.reset();

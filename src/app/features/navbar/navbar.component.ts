@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import { featuredProducts } from '../../models/FeaturedProducts';
+import { User } from '../../models/User';
 import { getCartItems } from '../../store/cart/cart.selector';
 import { getFavourites } from '../../store/favourite/favourite.selector';
 import { searchProducts } from '../../store/featured-products/products.action';
 import { logoutAction } from '../../store/login/login.actions';
-import { getIsLoggedIn } from '../../store/login/login.selector';
+import { getIsLoggedIn, getUser } from '../../store/login/login.selector';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +21,8 @@ export class NavbarComponent {
   cartItems!: featuredProducts[];
   favItems!: featuredProducts[];
   sidebarOpen: boolean = false;
+  user!: string;
+  adminUser: boolean=false;
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -36,6 +39,14 @@ export class NavbarComponent {
     this.store
       .select(getFavourites)
       .subscribe((data) => (this.favItems = data));
+    this.store.select(getUser).subscribe((user) => this.user = user);
+    this.isAdminUser();
+  }
+
+  isAdminUser() {
+    if (this.user === "admin123@gmail.com") {
+      this.adminUser = true;
+    }
   }
   onlogout() {
     localStorage.removeItem('loggedInUser');

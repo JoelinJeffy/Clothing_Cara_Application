@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { SharedModule } from '../../shared/shared.module';
@@ -18,12 +19,15 @@ const routes: Routes = [{ path: '', component: HomeComponent }];
     HeroComponent,
     BannerDirective,
     AmenitiesComponent,
+    
   ],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     SharedModule,
     LazyLoadImageModule,
+    FormsModule
+    
   ],
   exports: [RouterModule],
 })

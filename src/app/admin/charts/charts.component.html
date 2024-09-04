@@ -1,0 +1,13 @@
+
+<div *ngIf="displayChart;then container"></div>
+
+<ng-template #container>
+    <div class="chart-container">
+    <highcharts-chart [Highcharts]="Highcharts" class="chart-container1" [options]="lineChartOptions">
+    </highcharts-chart>
+
+    <highcharts-chart [Highcharts]="Highcharts" class="chart-container2" [options]="pieChartOptions">
+    </highcharts-chart>
+    </div>
+</ng-template>
+

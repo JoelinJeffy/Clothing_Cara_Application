@@ -12,6 +12,21 @@
             </div>
         </div>
     </div>
+    <app-amenities></app-amenities>
+    <div id="review">
+        <div class="review-text">
+            <h4>Add your reviews!</h4>
+            <p>Your feedback makes a difference—share your reviews with us</p>
+        </div>
+        <div class="review-form">
+            <input [(ngModel)]="message" type="text" placeholder="..."/>
+            <button (click)="send()" (keyup.enter)="send()">Send</button>
+        </div>
+       
+    </div>
+   
 </ng-container>
-<app-amenities></app-amenities>
+<div *ngIf="loading" class="spinner-container">
+    <div class="spinner"></div>
+</div>
 <app-footer></app-footer>

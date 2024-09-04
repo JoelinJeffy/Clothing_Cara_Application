@@ -19,6 +19,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { HighchartsChartModule } from 'highcharts-angular';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +30,6 @@ import { ProductsService } from './services/products.service';
 import { SharedModule } from './shared/shared.module';
 import { AmenitiesEffects } from './store/amenities/amenities.effects';
 import { ProductEffects } from './store/featured-products/products.effects';
-
 
 @NgModule({
   declarations: [AppComponent, ErrorComponent],
@@ -48,19 +48,20 @@ import { ProductEffects } from './store/featured-products/products.effects';
     MatButtonModule,
     OverlayModule,
     MatTooltipModule,
-     MatIconModule ,
+    MatIconModule,
     FormsModule,
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([ProductEffects,AmenitiesEffects]),
+    EffectsModule.forRoot([ProductEffects, AmenitiesEffects]),
     FormsModule,
     SharedModule,
     MatSnackBarModule,
     LazyLoadImageModule,
-    MatIcon
+    MatIcon,
+    HighchartsChartModule,
   ],
   providers: [
     provideAnimationsAsync(),
-   
+
     ProductsService,
     {
       provide: HTTP_INTERCEPTORS,

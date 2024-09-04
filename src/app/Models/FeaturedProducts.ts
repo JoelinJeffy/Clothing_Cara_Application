@@ -1,3 +1,5 @@
+import { Chart } from "./Chart";
+
 export interface featuredProducts {
   stripeid: any;
   id: number;
@@ -9,4 +11,5 @@ export interface featuredProducts {
   details: string;
   quantity: number;
   isFav: boolean;
+  charts: Chart[];
 }

@@ -19,8 +19,8 @@
             <p>Your feedback makes a difference—share your reviews with us</p>
         </div>
         <div class="review-form">
-            <input [(ngModel)]="message" type="text" placeholder="..."/>
-            <button (click)="send()" (keyup.enter)="send()">Send</button>
+            <input [(ngModel)]="message" type="text" placeholder="..." (keyup.enter)="send()"/>
+            <button (click)="send()" >Send</button>
         </div>
        
     </div>
